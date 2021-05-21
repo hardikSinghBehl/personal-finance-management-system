@@ -2,6 +2,7 @@ package com.hardik.plutocracy.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -12,9 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Data;
@@ -58,6 +62,18 @@ public class BalanceMode implements Serializable {
 
 	@Column(name = "updated_at", nullable = false)
 	private LocalDateTime updatedAt;
+
+	@Hidden
+	@Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "balanceMode", fetch = FetchType.LAZY)
+	private Set<CompletedTicket> completedTickets;
+
+	@Hidden
+	@Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "balanceMode", fetch = FetchType.LAZY)
+	private Set<FutureTicket> futureTickets;
 
 	@PrePersist
 	void onCreate() {

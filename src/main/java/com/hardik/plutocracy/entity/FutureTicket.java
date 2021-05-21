@@ -42,6 +42,15 @@ public class FutureTicket implements Serializable {
 	@JoinColumn(name = "user_id", nullable = true, insertable = false, updatable = false)
 	private User user;
 
+	@Column(name = "balance_mode_id", nullable = true)
+	private UUID balanceModeId;
+
+	@Hidden
+	@Exclude
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "balance_mode_id", nullable = true, insertable = false, updatable = false)
+	private BalanceMode balanceMode;
+
 	@Column(name = "name", nullable = false)
 	private String name;
 
