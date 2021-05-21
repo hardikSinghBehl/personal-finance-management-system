@@ -3,6 +3,7 @@ package com.hardik.plutocracy.security.utility;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -28,6 +29,14 @@ public class JwtUtils {
 		return extractClaim(token, Claims::getSubject);
 	}
 
+	public UUID extractUserId(String token) {
+		return (UUID) extractAllClaims(token).get("user_id");
+	}
+
+	public UUID extractTotalBalanceId(String token) {
+		return (UUID) extractAllClaims(token).get("total_balance_id");
+	}
+
 	public Date extractExpiration(String token) {
 		return extractClaim(token, Claims::getExpiration);
 	}
@@ -45,11 +54,11 @@ public class JwtUtils {
 		return extractExpiration(token).before(new Date());
 	}
 
-	public String generateToken(User user) {
+	public String generateToken(User user, UUID totalBalanceId) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("account_creation_timestamp", user.getCreatedAt());
+		claims.put("account_creation_timestamp", user.getCreatedAt().toString());
 		claims.put("user_id", user.getId());
-		claims.put("email_verified", false);
+		claims.put("total_balance_id", totalBalanceId);
 		claims.put("name", user.getFirstName() + " " + user.getLastName());
 		claims.put("scope", "user");
 		return createToken(claims, user.getEmailId());
