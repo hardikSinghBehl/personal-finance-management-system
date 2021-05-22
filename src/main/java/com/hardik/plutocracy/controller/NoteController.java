@@ -32,7 +32,7 @@ public class NoteController {
 	@Operation(summary = "Creates a note for the logged in user")
 	public ResponseEntity<?> noteCreationHandler(
 			@RequestBody(required = true) final NoteCreationRequestDto noteCreationRequest,
-			@RequestHeader(name = "Authorization", required = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return noteService.create(noteCreationRequest, token);
 	}
 
@@ -41,7 +41,7 @@ public class NoteController {
 	@Operation(summary = "Updates details of given note for the logged in user")
 	public ResponseEntity<?> noteUpdationHandler(
 			@RequestBody(required = true) final NoteUpdationRequestDto noteUpdationRequest,
-			@RequestHeader(name = "Authorization", required = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return noteService.update(noteUpdationRequest, token);
 	}
 

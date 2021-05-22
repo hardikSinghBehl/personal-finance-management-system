@@ -135,4 +135,12 @@ public class ResponseUtils {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	public ResponseEntity<?> noteSuccessResponse(final UUID noteId) {
+		final var response = new JSONObject();
+		response.put("message", "Note Saved Successfully!");
+		response.put("note_id", noteId);
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
 }

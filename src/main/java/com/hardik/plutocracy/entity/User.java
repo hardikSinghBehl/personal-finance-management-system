@@ -74,6 +74,12 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private Set<Goal> goals;
 
+	@Hidden
+	@Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private Set<Note> notes;
+
 	@PrePersist
 	void onCreate() {
 		this.id = UUID.randomUUID();

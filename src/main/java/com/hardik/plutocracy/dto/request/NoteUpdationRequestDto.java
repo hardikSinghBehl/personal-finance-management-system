@@ -1,6 +1,7 @@
 package com.hardik.plutocracy.dto.request;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +16,10 @@ import lombok.Getter;
 @Builder
 @JacksonStdImpl
 public class NoteUpdationRequestDto {
+
+	@Schema(description = "note id that has to be edited", example = "8a3f434d-b64b-40aa-8079-ee3d93584621", required = true)
+	@NotBlank(message = "note id must not be empty")
+	private final UUID id;
 
 	@Schema(description = "Description of the created note", example = "Probably Not a good idea", required = true)
 	@NotBlank(message = "note description must not be empty")
