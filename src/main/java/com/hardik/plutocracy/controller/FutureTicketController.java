@@ -34,7 +34,7 @@ public class FutureTicketController {
 	@Operation(summary = "Creates a future ticket for the logged-in user")
 	public ResponseEntity<?> futureTicketCreationHandler(
 			@RequestBody(required = true) final FutureTicketCreationRequestDto futureTicketCreationRequestDto,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return futureTicketService.create(futureTicketCreationRequestDto, token);
 	}
 
@@ -43,7 +43,7 @@ public class FutureTicketController {
 	@Operation(summary = "Deletes a future ticket for the logged-in user")
 	public ResponseEntity<?> futureTicketDeletionHandler(
 			@PathVariable(name = "ticketId", required = true) final UUID ticketId,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return futureTicketService.delete(ticketId, token);
 	}
 
@@ -51,7 +51,7 @@ public class FutureTicketController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@Operation(summary = "Returns list of future expense tickets created by the logged-in user")
 	public ResponseEntity<?> futureExpenseTicketRetreivalHandler(
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return futureTicketService.retreiveExpenses(token);
 	}
 
@@ -59,7 +59,7 @@ public class FutureTicketController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@Operation(summary = "Returns list of future gains tickets created by the logged-in user")
 	public ResponseEntity<?> futureGainTicketRetreivalHandler(
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return futureTicketService.retreiveGains(token);
 	}
 

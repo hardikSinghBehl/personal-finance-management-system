@@ -32,7 +32,7 @@ public class BalanceModeController {
 	@Operation(summary = "Creates a new mode of balance for the logged-in user")
 	public ResponseEntity<?> balanceModeCreationHandler(
 			@RequestBody(required = true) final BalanceModeCreationRequestDto balanceModeCreationRequestDto,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return balanceModeService.create(balanceModeCreationRequestDto, token);
 	}
 
@@ -41,7 +41,7 @@ public class BalanceModeController {
 	@Operation(summary = "Updates details of given mode of balance for the logged in user")
 	public ResponseEntity<?> balanceModeUpdationHandler(
 			@RequestBody(required = true) final BalanceModeUpdationRequestDto balanceModeUpdationRequestDto,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return balanceModeService.update(balanceModeUpdationRequestDto, token);
 	}
 
@@ -49,7 +49,7 @@ public class BalanceModeController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@Operation(summary = "Returns list of balance modes of the logged in user")
 	public ResponseEntity<?> balanceModeRetreivalHandler(
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return balanceModeService.retreive(token);
 	}
 }

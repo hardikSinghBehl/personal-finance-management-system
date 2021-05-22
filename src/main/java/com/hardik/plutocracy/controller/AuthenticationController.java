@@ -46,7 +46,7 @@ public class AuthenticationController {
 	@Operation(summary = "Changes the password of the logged in user")
 	public ResponseEntity<?> userPasswordUpdationHandler(
 			@RequestBody(required = true) final UserPasswordUpdationRequestDto userPasswordUpdationRequestDto,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return userService.updatePassword(userPasswordUpdationRequestDto, token);
 	}
 

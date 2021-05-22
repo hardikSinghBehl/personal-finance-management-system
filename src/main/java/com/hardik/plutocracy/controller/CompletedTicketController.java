@@ -34,7 +34,7 @@ public class CompletedTicketController {
 	@Operation(summary = "Creates a completed ticket for the logged-in user")
 	public ResponseEntity<?> completedTicketCreationHandler(
 			@RequestBody(required = true) final CompletedTicketCreationRequestDto completedTicketCreationRequest,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return completedTicketService.create(completedTicketCreationRequest, token);
 	}
 
@@ -43,7 +43,7 @@ public class CompletedTicketController {
 	@Operation(summary = "Deletes a completed ticket for the logged-in user")
 	public ResponseEntity<?> completedTicketDeletionHandler(
 			@PathVariable(name = "ticketId", required = true) final UUID ticketId,
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return completedTicketService.delete(ticketId, token);
 	}
 
@@ -51,7 +51,7 @@ public class CompletedTicketController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@Operation(summary = "Returns list of completed expense tickets created by the logged-in user")
 	public ResponseEntity<?> completedExpenseTicketRetreivalHandler(
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return completedTicketService.retreiveExpenses(token);
 	}
 
@@ -59,7 +59,7 @@ public class CompletedTicketController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@Operation(summary = "Returns list of completed gains tickets created by the logged-in user")
 	public ResponseEntity<?> completedGainTicketRetreivalHandler(
-			@RequestHeader(name = "Authentication", required = true) @Parameter(hidden = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return completedTicketService.retreiveGains(token);
 	}
 
