@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.hardik.plutocracy.dto.request.UserCreationRequestDto;
 import com.hardik.plutocracy.dto.request.UserLoginRequestDto;
 import com.hardik.plutocracy.dto.request.UserPasswordUpdationRequestDto;
+import com.hardik.plutocracy.dto.response.UserDetailsDto;
 import com.hardik.plutocracy.entity.TotalBalance;
 import com.hardik.plutocracy.entity.User;
 import com.hardik.plutocracy.repository.TotalBalanceRepository;
@@ -32,6 +33,14 @@ public class UserService {
 
 	public boolean userExists(final String emailId) {
 		return userRepository.findByEmailId(emailId).isPresent() ? true : false;
+	}
+
+	public ResponseEntity<?> retreive(String token) {
+		final var userId = jwtUtils.extractUserId(token.replace("Bearer ", ""));
+		final var user = userRepository.findById(userId).get();
+		return ResponseEntity.ok(UserDetailsDto.builder().createdAt(user.getCreatedAt())
+				.dateOfBirth(user.getDateOfBirth()).emailId(user.getEmailId()).firstName(user.getFirstName())
+				.lastName(user.getLastName()).updatedAt(user.getUpdatedAt()).build());
 	}
 
 	public ResponseEntity<?> createUser(final UserCreationRequestDto userCreationRequest) {
@@ -80,6 +89,13 @@ public class UserService {
 		userRepository.save(user);
 
 		return responseUtils.passwordUpdationSuccessResponse();
+	}
+
+	public ResponseEntity<?> deleteAccount(final String token) {
+		final var userId = jwtUtils.extractUserId(token.replace("Bearer ", ""));
+		final var totalBalance = totalBalanceRepository.findByUserId(userId).get();
+		totalBalanceRepository.deleteById(totalBalance.getId());
+		return ResponseEntity.ok().build();
 	}
 
 }
