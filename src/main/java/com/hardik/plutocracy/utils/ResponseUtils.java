@@ -1,6 +1,7 @@
 package com.hardik.plutocracy.utils;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +70,21 @@ public class ResponseUtils {
 	public ResponseEntity<?> passwordUpdationSuccessResponse() {
 		final var response = new JSONObject();
 		response.put("message", "Password Changed Successfully");
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
+	public ResponseEntity<?> balanceModeSuccessResponse(final UUID balanceModeId) {
+		final var response = new JSONObject();
+		response.put("message", "Balance Mode Saved Successfully!");
+		response.put("balance_mode_id", balanceModeId);
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
+	public ResponseEntity<?> unauthorizedResponse() {
+		final var response = new JSONObject();
+		response.put("message", "You Are Unauthorized to perform this task");
 		response.put("timestamp", LocalDateTime.now().toString());
 		return ResponseEntity.ok(response.toString());
 	}

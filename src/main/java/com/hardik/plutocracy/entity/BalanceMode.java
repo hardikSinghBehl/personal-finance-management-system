@@ -55,7 +55,7 @@ public class BalanceMode implements Serializable {
 	private Double value;
 
 	@Column(name = "is_active", nullable = false)
-	private boolean is_active;
+	private boolean isActive;
 
 	@Column(name = "created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
