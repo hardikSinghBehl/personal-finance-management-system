@@ -11,7 +11,8 @@ public enum ApiPathExclusion {
 	SWAGGER_RESOURCES("/swagger-resources"),
 	SWAGGER_RESOURCES_SECURITY_CONFIGURATION("/swagger-resources/configuration/security"),
 	SWAGGER_UI_HTML("swagger-ui.html"), WEBJARS("/webjars/**"), SWAGGER_UI("/swagger-ui/**"),
-	SWAGGER_API_V3_DOCS("/v3/api-docs/**"), SWAGGER_CONFIGURATION("/configuration/**"), SWAGGER("/swagger*/**");
+	SWAGGER_API_V3_DOCS("/v3/api-docs/**"), SWAGGER_CONFIGURATION("/configuration/**"), SWAGGER("/swagger*/**"),
+	MASTER_RESOURCE("/master/**"), USER_REGISTER_API("/register"), USER_LOGIN_API("/login");
 
 	private final String path;
 }
