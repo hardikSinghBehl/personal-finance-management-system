@@ -23,7 +23,7 @@
 * On Successful validation of login credentials, a JWT will be returned representing the user **(decode the below sample JWT on jwt.io for reference)**
 
 ```
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJkaWsuYmVobEB0aGVsYXR0aWNlLmluIiwiYWNjb3VudF9jcmVhdGlvbl90aW1lc3RhbXAiOnsieWVhciI6MjAyMSwibW9udGhWYWx1ZSI6NSwiZGF5T2ZNb250aCI6MTEsImhvdXIiOjIwLCJtaW51dGUiOjM1LCJzZWNvbmQiOjU1LCJuYW5vIjo2MDE4MDAwMDAsIm1vbnRoIjoiTUFZIiwiZGF5T2ZXZWVrIjoiVFVFU0RBWSIsImRheU9mWWVhciI6MTMxLCJjaHJvbm9sb2d5Ijp7ImNhbGVuZGFyVHlwZSI6Imlzbzg2MDEiLCJpZCI6IklTTyJ9fSwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJ1c2VyX2lkIjoiZWRlOThjZDAtYWFiZC00MDMzLTgwZmYtMWUxMWIxOTg3MDY1Iiwic2NvcGUiOiJ1c2VyIiwibmFtZSI6IkhhcmRpayBCZWhsIiwiZXhwIjoxNjIwNzgxNTgwLCJpYXQiOjE2MjA3NDU1ODAsImNvbnRhY3RfbnVtYmVyIjoiOTk5OTE1NTc4NiJ9.ktBeEMM4_FU-OLFJ6hxhLVqlYtMoPa0qZY2rjC8obic
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYXJkaWsuYmVobDc0NDRAZ21haWwuY29tIiwiYWNjb3VudF9jcmVhdGlvbl90aW1lc3RhbXAiOiIyMDIxLTA1LTIyVDExOjIyOjE5LjQ5MTQ4NiIsInVzZXJfaWQiOiIzODQ3ZjYxYy1hNjc0LTQ0N2UtYmQ0ZC0wZThhODk3NTg2YmQiLCJ0b3RhbF9iYWxhbmNlX2lkIjoiMWQyZWNiMzctMDNkNS00YjhhLWI0Y2MtMDllZTBmYjQwMDM3Iiwic2NvcGUiOiJ1c2VyIiwibmFtZSI6IkhhcmRpayBCZWhsIiwiZXhwIjoxNjIxNzA4NDE0LCJpYXQiOjE2MjE2NzI0MTR9.XaqcTVYUuBIBtp74pJK-_mTtQCYMWdduoWGoYhsSxD4
 ```
 * The received JWT should be included in the headers when calling a protected API
 * Authentication Bearer format to be used **(Header key should be 'Authentication' and value should start with Bearer followed with a single blank space and recieved JWT)**
@@ -135,5 +135,11 @@ Go to the below URI to view Swagger-UI (API-docs)
 http://localhost:9090/plutocracy/swagger-ui.html
 ```
 
+## Quick Guide To Use Swagger-UI
 
+* Click on API that you wish to hit by clicking the **Try It Out** button
+* Fill in the input if required as mentioned and click on **execute**
+* Some API's do not require the user to authenticate themselves before using it like account-registeration/account-login API's
+* In order to gain JWT required for authentication, execute the login API with valid credentials and paste the received JWT in repsonse in the Top Right section y clicking on **Authorize** and paste the JWT there to authorize
+* After successfully authorization, all protected API's can be executed the same way non-protected API's were being executed, the JWT will be **automatically** sent to the server inside headers following **bearerAuth** security flow. 
 
