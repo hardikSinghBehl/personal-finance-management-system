@@ -1,5 +1,7 @@
 package com.hardik.plutocracy.dto.request;
 
+import java.util.List;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
@@ -21,5 +23,8 @@ public class NoteUpdationRequestDto {
 
 	@Schema(description = "active/inactive flag for note", example = "false", required = false)
 	private final Boolean isActive;
+
+	@Schema(description = "List of tags to associate with note", required = false)
+	private final List<TagCreationRequestDto> tags;
 
 }

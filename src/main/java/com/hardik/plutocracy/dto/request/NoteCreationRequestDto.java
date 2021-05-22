@@ -1,5 +1,7 @@
 package com.hardik.plutocracy.dto.request;
 
+import java.util.List;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
@@ -23,5 +25,8 @@ public class NoteCreationRequestDto {
 	@NotBlank(message = "note description must not be empty")
 	@Max(value = 2000, message = "Description must not exceed 2000 characters")
 	private final String description;
+
+	@Schema(description = "List of tags to associate with note", required = false)
+	private final List<TagCreationRequestDto> tags;
 
 }

@@ -1,6 +1,7 @@
 package com.hardik.plutocracy.dto.request;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
@@ -39,5 +40,8 @@ public class CompletedTicketCreationRequestDto {
 	@Schema(description = "Date on which ticket was settled", example = "2021-05-14", required = true)
 	@NotBlank(message = "ticket completion date value must not be empty")
 	private final LocalDate ticketCompletionDate;
+
+	@Schema(description = "List of tags to associate with ticket", required = false)
+	private final List<TagCreationRequestDto> tags;
 
 }
