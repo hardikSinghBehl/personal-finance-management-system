@@ -89,4 +89,19 @@ public class ResponseUtils {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	public ResponseEntity<?> completedTicketSuccessResponse(final UUID completedTicketId) {
+		final var response = new JSONObject();
+		response.put("message", "Ticket Saved Successfully!");
+		response.put("completed_ticket_id", completedTicketId);
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
+	public ResponseEntity<?> completedTicketDeletionResponse() {
+		final var response = new JSONObject();
+		response.put("message", "Ticket Deleted Successfully");
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
 }
