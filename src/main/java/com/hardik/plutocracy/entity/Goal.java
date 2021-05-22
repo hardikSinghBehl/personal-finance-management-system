@@ -22,7 +22,7 @@ import lombok.EqualsAndHashCode.Exclude;
 
 @Data
 @Entity
-@Table(name = "goals")
+@Table(name = "financial_goals")
 public class Goal implements Serializable {
 
 	private static final long serialVersionUID = 4125308711988719447L;

@@ -26,7 +26,7 @@ import lombok.EqualsAndHashCode.Exclude;
 
 @Data
 @Entity
-@Table(name = "notes")
+@Table(name = "financial_notes")
 public class Note implements Serializable {
 
 	private static final long serialVersionUID = -954852873543850676L;

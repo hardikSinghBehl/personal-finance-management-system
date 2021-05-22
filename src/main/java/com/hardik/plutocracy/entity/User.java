@@ -59,25 +59,25 @@ public class User implements Serializable {
 	@Hidden
 	@Exclude
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<CompletedTicket> completedTickets;
 
 	@Hidden
 	@Exclude
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<FutureTicket> futureTickets;
 
 	@Hidden
 	@Exclude
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<Goal> goals;
 
 	@Hidden
 	@Exclude
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<Note> notes;
 
 	@PrePersist
