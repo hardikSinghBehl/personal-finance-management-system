@@ -127,4 +127,12 @@ public class ResponseUtils {
 				.collect(Collectors.toList()));
 	}
 
+	public ResponseEntity<?> goalSuccessResponse(final UUID goalId) {
+		final var response = new JSONObject();
+		response.put("message", "Goal Saved Successfully!");
+		response.put("goal_id", goalId);
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
 }

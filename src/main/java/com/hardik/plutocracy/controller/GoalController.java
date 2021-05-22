@@ -32,7 +32,7 @@ public class GoalController {
 	@Operation(summary = "Creates a financial goal for the logged in user")
 	public ResponseEntity<?> goalCreationHandler(
 			@RequestBody(required = true) final GoalCreationRequestDto goalCreationRequest,
-			@RequestHeader(name = "Authorization", required = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return goalService.create(goalCreationRequest, token);
 	}
 
@@ -41,7 +41,7 @@ public class GoalController {
 	@Operation(summary = "Updates details of given financial goal for the logged in user")
 	public ResponseEntity<?> goalUpdationHandler(
 			@RequestBody(required = true) final GoalUpdationRequestDto goalUpdationRequest,
-			@RequestHeader(name = "Authorization", required = true) final String token) {
+			@RequestHeader(name = "Authorization", required = true) @Parameter(hidden = true) final String token) {
 		return goalService.update(goalUpdationRequest, token);
 	}
 
