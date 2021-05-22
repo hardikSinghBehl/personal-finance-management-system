@@ -45,12 +45,19 @@ public class MasterController {
 		return responseUtils.balanceModeTypeListResponse();
 	}
 
+	@GetMapping("/context-type-for-tags")
+	@ResponseStatus(value = HttpStatus.OK)
+	@Operation(summary = "Returns List of values of Context Type For Retreiving List of tags")
+	public ResponseEntity<?> contextTypeRetreivalHandler() {
+		return responseUtils.contextTypeListResponse();
+	}
+
 	@GetMapping("/tags")
 	@ResponseStatus(value = HttpStatus.OK)
 	@Operation(summary = "Returns List of tags in the system)")
 	public ResponseEntity<?> tagsRetreivalHandler() {
 		return ResponseEntity
-				.ok(tagService.retreive().parallelStream().map(tag -> tag.getName()).collect(Collectors.toList()));
+				.ok(tagService.retreiveAll().parallelStream().map(tag -> tag.getName()).collect(Collectors.toList()));
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.hardik.plutocracy.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,5 +13,7 @@ import com.hardik.plutocracy.entity.TicketTagMapping;
 public interface TicketTagMappingRepository extends JpaRepository<TicketTagMapping, Integer> {
 
 	Optional<TicketTagMapping> findByTagIdAndTicketId(Integer tagId, UUID ticketId);
+
+	List<TicketTagMapping> findByTicketId(UUID ticketId);
 
 }
