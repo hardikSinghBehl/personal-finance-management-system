@@ -150,4 +150,11 @@ public class ResponseUtils {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	public ResponseEntity<?> profileDetailUpdationSuccessResponse() {
+		final var response = new JSONObject();
+		response.put("message", "Profile details updated Successfully!");
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
 }

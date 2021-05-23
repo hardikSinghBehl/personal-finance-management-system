@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hardik.plutocracy.dto.request.UserCreationRequestDto;
+import com.hardik.plutocracy.dto.request.UserDetailUpdationRequestDto;
 import com.hardik.plutocracy.dto.request.UserLoginRequestDto;
 import com.hardik.plutocracy.dto.request.UserPasswordUpdationRequestDto;
 import com.hardik.plutocracy.dto.response.UserDetailsDto;
@@ -106,6 +107,18 @@ public class UserService {
 		final var totalBalance = totalBalanceRepository.findByUserId(userId).get();
 		totalBalanceRepository.deleteById(totalBalance.getId());
 		return ResponseEntity.ok().build();
+	}
+
+	public ResponseEntity<?> update(final UserDetailUpdationRequestDto userDetailUpdationRequest, final String token) {
+		final var loggedInUserId = jwtUtils.extractUserId(token.replace("Bearer ", ""));
+		final var user = userRepository.findById(loggedInUserId).get();
+
+		user.setFirstName(userDetailUpdationRequest.getFirstName());
+		user.setLastName(userDetailUpdationRequest.getLastName());
+		user.setDateOfBirth(userDetailUpdationRequest.getDateOfBirth());
+		userRepository.save(user);
+
+		return responseUtils.profileDetailUpdationSuccessResponse();
 	}
 
 }
