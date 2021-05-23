@@ -80,6 +80,18 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<Note> notes;
 
+	@Hidden
+	@Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
+	private Set<CurrentMonthlySpendingThresholdLimit> currentMonthlySpendingThresholdLimits;
+
+	@Hidden
+	@Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
+	private Set<SpendingThresholdRecord> spendingThresholdRecords;
+
 	@PrePersist
 	void onCreate() {
 		this.id = UUID.randomUUID();
