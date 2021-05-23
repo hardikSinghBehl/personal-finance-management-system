@@ -143,4 +143,11 @@ public class ResponseUtils {
 		return ResponseEntity.ok(response.toString());
 	}
 
+	public ResponseEntity<?> monthlySpendingUpdationSuccessResponse() {
+		final var response = new JSONObject();
+		response.put("message", "Current Month's Spending Threshold Saved Successfully!");
+		response.put("timestamp", LocalDateTime.now().toString());
+		return ResponseEntity.ok(response.toString());
+	}
+
 }

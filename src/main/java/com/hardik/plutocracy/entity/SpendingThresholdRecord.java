@@ -23,6 +23,8 @@ import lombok.EqualsAndHashCode.Exclude;
 @Table(name = "spending_threshold_records")
 public class SpendingThresholdRecord implements Serializable {
 
+	private static final long serialVersionUID = 9034204572897473307L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, unique = true, insertable = false, updatable = false)
