@@ -15,9 +15,13 @@
 * PostgreSQL
 * Open-API (Swagger-UI)
 * Lombok
+* Figma
 
 ## Entities
-![ER Diagram Of Entities](https://user-images.githubusercontent.com/69693621/119144218-182d8900-ba66-11eb-95d1-5fe24bbc3f6f.jpeg)
+##### SQL Migration Scripts can be viewed at src/main/resources/db/migration
+##### Read in detail about entities used in ENTITIES.md in project root.
+![ER Diagram of Database Entities](https://user-images.githubusercontent.com/69693621/119250906-e7159b80-bbc0-11eb-930d-944714b986f6.jpeg)
+
 
 ## Security Flow
 * On Successful validation of login credentials, a JWT will be returned representing the user **(decode the below sample JWT on jwt.io for reference)**
@@ -38,7 +42,7 @@ Authentication : Bearer <JWT>
 * User's are able to track their **current** expenses/gains.
 * User's are able to track their **upcoming (future)** expenses/gains.
 * User's are able to set **financial goals** and track their completion.
-* User's are able to set a **monthy spending threshold** and can track it through the month.
+* User's are able to set a **monthy spending threshold** and can track it through the month. (calculated automatically at month end using Spring scheduler and cron expressions)
 * User's are able to create financial **notes** for their reference.
 * User's are able to assign **tags** to their expenses/gains tickets or notes for future reference and quering
 
