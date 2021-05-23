@@ -8,8 +8,10 @@ import com.hardik.plutocracy.dto.request.UserCreationRequestDto;
 import com.hardik.plutocracy.dto.request.UserLoginRequestDto;
 import com.hardik.plutocracy.dto.request.UserPasswordUpdationRequestDto;
 import com.hardik.plutocracy.dto.response.UserDetailsDto;
+import com.hardik.plutocracy.entity.CurrentMonthlySpendingThresholdLimit;
 import com.hardik.plutocracy.entity.TotalBalance;
 import com.hardik.plutocracy.entity.User;
+import com.hardik.plutocracy.repository.CurrentMonthlySpendingThresholdLimitRepository;
 import com.hardik.plutocracy.repository.TotalBalanceRepository;
 import com.hardik.plutocracy.repository.UserRepository;
 import com.hardik.plutocracy.security.utility.JwtUtils;
@@ -30,6 +32,8 @@ public class UserService {
 	private final ResponseUtils responseUtils;
 
 	private final JwtUtils jwtUtils;
+
+	private final CurrentMonthlySpendingThresholdLimitRepository currentMonthlySpendingThresholdLimitRepository;
 
 	public boolean userExists(final String emailId) {
 		return userRepository.findByEmailId(emailId).isPresent() ? true : false;
@@ -60,6 +64,12 @@ public class UserService {
 		final var totalBalance = new TotalBalance();
 		totalBalance.setUserId(savedUser.getId());
 		totalBalanceRepository.save(totalBalance);
+
+		final var currentMonthlySpendingThresholdLimit = new CurrentMonthlySpendingThresholdLimit();
+		currentMonthlySpendingThresholdLimit.setUserId(savedUser.getId());
+		currentMonthlySpendingThresholdLimit.setLimitValue(0.0);
+		currentMonthlySpendingThresholdLimit.setIsActive(false);
+		currentMonthlySpendingThresholdLimitRepository.save(currentMonthlySpendingThresholdLimit);
 
 		return responseUtils.userCreationSuccessResponse();
 	}
